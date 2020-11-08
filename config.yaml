@@ -1,0 +1,12 @@
+ldt_path: './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT' 
+lamp_placements: # x[m],   y[m],  z[m], azimut[deg], elevation[deg]
+  - {x:  8.921, y: 16.427, z: 5.000, azimut:  -21.3, elevation:  8.5}
+  - {x: 41.079, y: 16.427, z: 5.000, azimut:   21.3, elevation:  8.5}
+  - {x:  8.921, y: 33.573, z: 5.000, azimut: -158.7, elevation:  8.5}
+  - {x: 41.079, y: 33.573, z: 5.000, azimut:  158.7, elevation:  8.5}
+  - {x: 19.560, y: 16.487, z: 5.000, azimut:    0.4, elevation: 10.9}
+  - {x: 30.440, y: 16.487, z: 5.000, azimut:   -0.4, elevation: 10.9}
+  - {x: 19.560, y: 33.513, z: 5.000, azimut:  179.6, elevation: 10.9}
+  - {x: 30.440, y: 33.513, z: 5.000, azimut: -179.6, elevation: 10.9}
+x_axis: {start:  8.9, stop: 41.8, count: 150}  # [m]
+y_axis: {start: 16.5, stop: 33.6, count: 100}
