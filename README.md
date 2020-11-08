@@ -13,6 +13,10 @@ pip install -r requirements.txt
 
 python illumination_map.py config.yaml
 
+## limitations
+
+[EULUMDAT](https://en.wikipedia.org/wiki/EULUMDAT) reader not fully implemented
+
 ## terminology
 
 https://en.wikipedia.org/wiki/Candela
