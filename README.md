@@ -11,7 +11,7 @@ pip install -r requirements.txt
 
 ## usage
 
-python main.py
+python illumination_map.py config.yaml
 
 ## terminology
 
