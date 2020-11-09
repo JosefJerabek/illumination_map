@@ -13,12 +13,51 @@ class LdtReader:
         self._interpret_elumdat(rows)
 
     def _interpret_elumdat(self, lines):
-        """ Interpretuje soubor ALUMDAT
-        naplní proměnné:
+        """ Interprets EULUMDAT file
+            items:
+                "Identifikation"
+                "Lichtquellentyp"
+                "Art der Symmetrie"
+                "Anzahl Mc der C-Ebenen zwischen 0° und 360°"
+                "Winkelintervall Dc zwischen den C-Ebenen"
+                "Anzahl Ng der Lichtstärkewerte in jeder C-Ebene"
+                "Winkelintervall Dg zwischen den Lichtstärkewerten einer C-Ebene"
+                "Messprotokollnummer"
+                "Leuchtenbezeichnung"
+                "Leuchtennummer"
+                "Dateiname / Datensatzname"
+                "Datum / Benutzer"
+                "Länge oder Durchmesser der Leuchte in mm"
+                "Breite b der Leuchte in Millimeter"
+                "Höhe der Leuchte in Millimeter"
+                "Länge oder Durchmesser der leuchtenden Fläche in Millimeter"
+                "Breite b1 der leuchtenden Fläche in Millimeter"
+                "Höhe der leuchtenden Fläche in der C0-Ebene in Millimeter"
+                "Höhe der leuchtenden Fläche in der C90-Ebene in Millimeter"
+                "Höhe der leuchtenden Fläche in der C180-Ebene in Millimeter"
+                "Höhe der leuchtenden Fläche in der C270-Ebene in Millimeter"
+                "Anteil des unteren halbräumlichen Lichtstroms Phiu"
+                "Leuchtenwirkungsgrad in %"
+                "Umrechnungsfaktor für Lichtstärkewerte"
+                "Neigung der Leuchte während der Messung"
+                "Anzahl n der Standard-Lampensätze"
+                "Anzahl der Lampen"
+                "Typ der Lampen"
+                "Gesamtlichtstrom der Lampen"
+                "Lichtfarbe / Farbtemperatur"
+                "Farbwiedergabeklasse / Farbwiedergabeindex"
+                "Leistungsaufnahme gesamte Leuchte in W"
+                "??Direct ratios for room indices k = 0,6 … 5"
+                "??C-Winkel (beginnend bei 0°)"
+                "??G-Winkel (beginnend bei 0°)"
+                "??Lichtstärkeverteilung in Candela pro 1000 Lumen"
         """
         azimut_count = int(lines[3])
         elevation_count = int(lines[5])
-        power = float(lines[28])
+        efficiency = float(lines[22]) / 100.0
+        power_lumen = float(lines[28])
+        light_temperature = float(lines[29])
+        power_watt = float(lines[31])
 
         # azimut_axis, elevation_axis, values
         numbers = np.array([float(item) for item in lines[42:]])
@@ -44,7 +83,7 @@ class LdtReader:
 
         self.azimuts = azimuts - 180.0  # TODO why?
         self.elevations = elevations
-        self.intenzities = power * matrix_full / 1000.0
+        self.intenzities = power_lumen * efficiency * matrix_full / 1000.0
 
     @staticmethod
     def _load_file(path) -> list:
