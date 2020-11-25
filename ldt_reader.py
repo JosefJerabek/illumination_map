@@ -56,7 +56,7 @@ class LdtReader:
         elevation_count = int(lines[5])
         efficiency = float(lines[22]) / 100.0
         power_lumen = float(lines[28])
-        light_temperature = float(lines[29])
+        light_temperature = lines[29]
         power_watt = float(lines[31])
 
         # azimut_axis, elevation_axis, values
@@ -69,7 +69,9 @@ class LdtReader:
         meas_azimut_count = int(len(values) / elevation_count)
         matrix = values.reshape((meas_azimut_count, elevation_count))
 
-        if meas_azimut_count != azimut_count:
+        if meas_azimut_count == azimut_count:
+            matrix_full = matrix
+        else:
             # určení typu symetrie
             is_half_symetry = (meas_azimut_count - 1) * 2 == azimut_count
             if is_half_symetry:
@@ -90,5 +92,5 @@ class LdtReader:
         """ Načte obsah souboru po řádkách do listu """
         with open(path, encoding='cp1250') as f:
             lines = f.read().splitlines()
-        lines = [item for item in lines if item]
+        #lines = [item for item in lines if item]
         return lines

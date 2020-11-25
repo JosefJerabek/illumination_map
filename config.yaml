@@ -1,5 +1,8 @@
-ldt_path: './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT' 
-lamp_placements: # x[m],   y[m],  z[m], azimut[deg], elevation[deg]
+ldt_path: './ldt/portland/FLD152-D1.ldt'
+lamp_placements: 
+  # x[m],   y[m],  z[m], azimut[deg], elevation[deg]
+  # azimut [deg] - angle around Z axis, zero is Y axis direction
+  # elevation [deg] - angle around X axis 
   - {x:  8.921, y: 16.427, z: 5.000, azimut:  -21.3, elevation:  8.5}
   - {x: 41.079, y: 16.427, z: 5.000, azimut:   21.3, elevation:  8.5}
   - {x:  8.921, y: 33.573, z: 5.000, azimut: -158.7, elevation:  8.5}
