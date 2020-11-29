@@ -6,7 +6,7 @@ from typing import Tuple
 
 from lamp_area import LampArea, LampPlacement, Point3D
 
-DEFAULT_CONFIG_PATH = "config.yaml"
+DEFAULT_CONFIG_PATH = "config_portland_12x200.yaml"
 
 def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
 
@@ -36,7 +36,7 @@ def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array):
     for x_index, x in enumerate(x_axis):
         for y_index, y in enumerate(y_axis):
             illuminance = lamp_area.illuminance(x, y)
-            illuminancies[x_index, y_index] = illuminance
+            illuminancies[x_index, y_index] = illuminance / 2.0 # TODO - why?
 
     pl.contourf(transpose(x_grid), transpose(y_grid), illuminancies)
 

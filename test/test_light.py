@@ -12,7 +12,8 @@ from numpy import array, linspace, transpose, meshgrid, empty
 from ldt_reader import LdtReader
 from light import Light
 
-LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+#LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+LDT_PATH = './ldt/portland/FLD153-D1.ldt'
 
 class TestLight(unittest.TestCase):
 

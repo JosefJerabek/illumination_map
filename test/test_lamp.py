@@ -14,16 +14,19 @@ from lamp import Lamp
 from point import Point3D
 
 
-LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+#LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+LDT_PATH = './ldt/portland/FLD153-D1.ldt'
+
 HEIGHT = 5.0  # lamp height
-LIGHT_AZIMUT = 0
+LIGHT_AZIMUT = -90
+LIGHT_ELEVATION = 0 
 
 y_distances = np.linspace(0.0, 10.0, 400)  # front
 x_distances = np.linspace(-5.0, 5.0, 300)  # side
 
 reader = LdtReader(LDT_PATH)
 light = Light(reader.azimuts, reader.elevations, reader.intenzities)
-lamp = Lamp(light, Point3D(1.0, 1.0, HEIGHT), LIGHT_AZIMUT)
+lamp = Lamp(light, Point3D(0.0, 0.0, HEIGHT), LIGHT_AZIMUT, LIGHT_ELEVATION)
 
 grid_y_distances, grid_x_distances = np.meshgrid(y_distances, x_distances)
 illuminancies = np.empty((len(y_distances), len(x_distances)))

@@ -83,7 +83,7 @@ class LdtReader:
             else:
                 raise Exception("Unknown data symetry")
 
-        self.azimuts = azimuts - 180.0  # TODO why?
+        self.azimuts = azimuts
         self.elevations = elevations
         self.intenzities = power_lumen * efficiency * matrix_full / 1000.0
 
