@@ -5,26 +5,21 @@ lamp_placements:
   # azimut [deg] - angle around Z axis, zero is Y axis direction
   # elevation [deg] - angle around X axis 
   ### nejvnějšejší
-  - {x:  3.610, y:  0.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
-  - {x: 28.890, y:  0.000, z: 5.000, elevation: 15.0, azimut:  15.0}
-  - {x:  3.610, y: 18.000, z: 5.000, elevation: 15.0, azimut:  -165.0}
-  - {x: 28.890, y: 18.000, z: 5.000, elevation: 15.0, azimut: 165.0}
-  ###
-  - {x:  7.220, y:  0.000, z: 5.000, elevation: 17.0, azimut:    0.0}
-  - {x: 25.280, y:  0.000, z: 5.000, elevation: 17.0, azimut:    0.0}
-  - {x:  7.220, y: 18.000, z: 5.000, elevation: 17.0, azimut:  180.0}
-  - {x: 25.280, y: 18.000, z: 5.000, elevation: 17.0, azimut:  180.0}
+  - {x:  3.610, y:  0.000, z: 5.000, elevation: 20.0, azimut:  -15.0}
+  - {x: 28.890, y:  0.000, z: 5.000, elevation: 20.0, azimut:  15.0}
+  - {x:  3.610, y: 18.000, z: 5.000, elevation: 20.0, azimut:  -165.0}
+  - {x: 28.890, y: 18.000, z: 5.000, elevation: 20.0, azimut: 165.0}
+  ### prostřední20
+  - {x:  7.220, y:  0.000, z: 5.000, elevation: 20.0, azimut:    0.0}
+  - {x: 25.280, y:  0.000, z: 5.000, elevation: 20.0, azimut:    0.0}
+  - {x:  7.220, y: 18.000, z: 5.000, elevation: 20.0, azimut:  180.0}
+  - {x: 25.280, y: 18.000, z: 5.000, elevation: 20.0, azimut:  180.0}
   ### nejvnitřenější
   - {x: 10.830, y:  0.000, z: 5.000, elevation: 20.0, azimut:   45.0}
   - {x: 21.670, y:  0.000, z: 5.000, elevation: 20.0, azimut:  -45.0}
   - {x: 10.830, y: 18.000, z: 5.000, elevation: 20.0, azimut:  135.0}
   - {x: 21.670, y: 18.000, z: 5.000, elevation: 20.0, azimut: -135.0}
   
-  ### Skřížená varianta ###
-  # x[m],   y[m],  z[m], azimut[deg], elevation[deg]
-  # azimut [deg] - angle around Z axis, zero is Y axis direction
-  # elevation [deg] - angle around X axis
-
-
 x_axis: {start: 0.0, stop: 32.5, count: 150}  # [m]
 y_axis: {start: 0.0, stop: 18.0, count: 100}
+illumination_axis: {start: 0.0, stop: 400.0, count: 17}  # [lux] ... count = (max-min) / step + 1

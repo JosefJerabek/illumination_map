@@ -1,4 +1,4 @@
-from numpy import array, linspace, meshgrid, empty, transpose
+from numpy import array, linspace, arange, meshgrid, empty, transpose
 import matplotlib.pyplot as pl
 import yaml
 import sys
@@ -24,11 +24,14 @@ def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
 
     axis = config["y_axis"] 
     y_axis = linspace(axis["start"], axis["stop"], axis["count"])
+    
+    axis = config["illumination_axis"] 
+    illumination_axis = linspace(axis["start"], axis["stop"], axis["count"])
 
-    return lamp_area, x_axis, y_axis
+    return lamp_area, x_axis, y_axis, illumination_axis
 
 
-def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array):
+def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array, illumination_axis: array):
 
     x_grid, y_grid = meshgrid(x_axis, y_axis) 
     illuminancies = empty((len(x_axis), len(y_axis)))
@@ -38,7 +41,7 @@ def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array):
             illuminance = lamp_area.illuminance(x, y)
             illuminancies[x_index, y_index] = illuminance / 2.0 # TODO - why?
 
-    pl.contourf(transpose(x_grid), transpose(y_grid), illuminancies)
+    pl.contourf(transpose(x_grid), transpose(y_grid), illuminancies, illumination_axis)
 
     pl.colorbar()
     pl.title("Illuminance [lux]")
@@ -60,6 +63,6 @@ if len(sys.argv) > 1:
     else:
         config_path = sys.argv[1]  
 
-lamp_area, x_axis, y_axis = initialze_from_yaml(config_path)
-plot_illuminance(lamp_area, x_axis, y_axis)
+lamp_area, x_axis, y_axis, illumination_axis = initialze_from_yaml(config_path)
+plot_illuminance(lamp_area, x_axis, y_axis, illumination_axis)
 pl.show()

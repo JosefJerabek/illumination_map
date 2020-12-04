@@ -13,3 +13,4 @@ lamp_placements:
   - {x: 30.440, y: 33.513, z: 5.000, azimut: -179.6, elevation: 10.9}
 x_axis: {start:  8.9, stop: 41.8, count: 150}  # [m]
 y_axis: {start: 16.5, stop: 33.6, count: 100}
+illumination_axis: {start: 0.0, stop: 400.0, count: 17}  # [lux] ... count = (max-min) / step + 1 
