@@ -20,6 +20,10 @@ lamp_placements:
   - {x:   5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:  -45.0}
   - {x:  -5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut:  135.0}
   - {x:   5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut: -135.0}
-x_axis: {start: 0.0, stop: 32.5, count: 150}  # [m]
-y_axis: {start: 0.0, stop: 18.0, count: 100}
+# grid for illumination computation
+x_axis: {start: -22, stop: 22, count: 50}  # [m]
+y_axis: {start: -15.0, stop: 15.0, count: 50}
+# playground dimensions
+box_x_radius: 16.25
+box_y_radius: 9
 illumination_axis: {start: 0.0, stop: 400.0, count: 33}  # [lux] ... count = (max-min) / step + 1
