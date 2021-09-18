@@ -39,8 +39,8 @@ class Light:
 
         # range for elevation 
         assert (-180 <= elevation <= 180)
-        # azimut not limited, just convert into basic interval <-180, 180>
-        azimut = -180 + (azimut + 180) % 360
+        # azimut not limited, just convert into basic interval <0, 360)
+        azimut = azimut % 360
 
         def angle_diff(first, second):
             """ Angle between two azimuts """
