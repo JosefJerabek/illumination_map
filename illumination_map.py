@@ -2,12 +2,31 @@ from numpy import array, linspace, arange, meshgrid, empty, transpose, min, max,
 import matplotlib.pyplot as pl
 import yaml
 import sys
-from typing import Tuple
+from typing import Optional, Tuple
 
 from lamp_area import LampArea, LampPlacement, Point3D
+from dataclasses import dataclass
+from typing import List, Optional
 
 
-def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
+@dataclass
+class CenteredRectangle:
+    radius_x: float
+    radius_y: float
+
+
+@dataclass
+class Config:
+    lamp_ldt_path: str
+    lamp_placements: List[LampPlacement]
+    x_axis: array
+    y_axis: array
+    # illumination same color axis
+    illum_axis: array
+    box: CenteredRectangle
+
+
+def initialze_from_yaml(config_path) -> Config:
 
     print(f"Loading configuration from \"{config_path}\"")
     config = yaml.load(open(config_path), Loader=yaml.SafeLoader)
@@ -16,7 +35,8 @@ def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
         LampPlacement(Point3D(item["x"], item["y"], item["z"]), item["azimut"], item["elevation"]) 
         for item in config["lamp_placements"]
         ]
-    lamp_area = LampArea(config["ldt_path"], lamp_placements)
+
+    lamp_ldt_path = config["ldt_path"]
 
     axis = config["x_axis"] 
     x_axis = linspace(axis["start"], axis["stop"], axis["count"])
@@ -25,18 +45,32 @@ def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
     y_axis = linspace(axis["start"], axis["stop"], axis["count"])
     
     axis = config["illumination_axis"] 
-    illumination_axis = linspace(axis["start"], axis["stop"], axis["count"])
+    illum_axis = linspace(axis["start"], axis["stop"], axis["count"])
 
-    return lamp_area, x_axis, y_axis, illumination_axis
+    box = CenteredRectangle(
+        radius_x=config["box_x_radius"],
+        radius_y=config["box_y_radius"]
+    )
+
+    return Config(
+        lamp_ldt_path=lamp_ldt_path,
+        lamp_placements=lamp_placements,
+        x_axis=x_axis,
+        y_axis=y_axis,
+        illum_axis=illum_axis,
+        box=box
+    )
 
 
-def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array, illumination_axis: array):
+def plot_illuminance(config: Config) -> None:
+    
+    x_grid, y_grid = meshgrid(config.x_axis, config.y_axis) 
+    illuminancies = empty((len(config.x_axis), len(config.y_axis)))
+    
+    lamp_area = LampArea(config.lamp_ldt_path, config.lamp_placements)
 
-    x_grid, y_grid = meshgrid(x_axis, y_axis) 
-    illuminancies = empty((len(x_axis), len(y_axis)))
-
-    for x_index, x in enumerate(x_axis):
-        for y_index, y in enumerate(y_axis):
+    for x_index, x in enumerate(config.x_axis):
+        for y_index, y in enumerate(config.y_axis):
             illuminance = lamp_area.illuminance(x, y)
             illuminancies[x_index, y_index] = illuminance / 2.0 # TODO - why?
 
@@ -44,7 +78,7 @@ def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array, ill
         transpose(x_grid), 
         transpose(y_grid), 
         illuminancies, 
-        illumination_axis,
+        config.illum_axis,
         cmap=pl.cm.get_cmap("jet")
     )
 
@@ -74,6 +108,7 @@ if len(sys.argv) == 0 or len(sys.argv) > 1:
     else:
         config_path = sys.argv[1]  
 
-lamp_area, x_axis, y_axis, illumination_axis = initialze_from_yaml(config_path)
-plot_illuminance(lamp_area, x_axis, y_axis, illumination_axis)
+config = initialze_from_yaml(config_path)
+plot_illuminance(config)
+#plot_playground(config.box)
 pl.show()
