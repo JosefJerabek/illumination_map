@@ -1,4 +1,4 @@
-from numpy import array, linspace, arange, meshgrid, empty, transpose
+from numpy import array, linspace, arange, meshgrid, empty, transpose, min, max, mean, median
 import matplotlib.pyplot as pl
 import yaml
 import sys
@@ -6,7 +6,6 @@ from typing import Tuple
 
 from lamp_area import LampArea, LampPlacement, Point3D
 
-DEFAULT_CONFIG_PATH = "config_portland_12x200.yaml"
 
 def initialze_from_yaml(config_path) -> Tuple[LampArea, array, array]:
 
@@ -43,8 +42,15 @@ def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array, ill
 
     pl.contourf(transpose(x_grid), transpose(y_grid), illuminancies, illumination_axis)
 
+    def get_param_string(illuminancies: array) -> str:
+        min_value = int(min(illuminancies))
+        max_value = int(max(illuminancies))
+        mean_value = int(mean(illuminancies))
+        median_value = int(median(illuminancies))
+        return f"min={min_value} max={max_value} mean={mean_value} median={median_value}"
+
     pl.colorbar()
-    pl.title("Illuminance [lux]")
+    pl.title(f"Illuminance [lux] ({get_param_string(illuminancies)})")
     pl.xlabel("x [m]")
     pl.ylabel("y [m]")
 
@@ -55,8 +61,7 @@ def print_help():
     print(f"\tconfiguration_file ... lamp and space configuration [default=\"config.yaml\"]")
 
 
-config_path = DEFAULT_CONFIG_PATH
-if len(sys.argv) > 1:
+if len(sys.argv) == 0 or len(sys.argv) > 1:
     if sys.argv[1] == "-h" or sys.argv[1] == "--help":
         print_help()
         exit()

@@ -68,20 +68,32 @@ class LdtReader:
 
         meas_azimut_count = int(len(values) / elevation_count)
         matrix = values.reshape((meas_azimut_count, elevation_count))
+            
+        # discover azimut symetry type
+        is_full = meas_azimut_count == azimut_count
+        is_half_symetry = (meas_azimut_count - 1) * 2 == azimut_count
+        is_fourth_symetry = (meas_azimut_count - 1) * 4 == azimut_count
 
-        if meas_azimut_count == azimut_count:
+        if is_full: 
             matrix_full = matrix
+        elif is_half_symetry:
+            matrix_full = np.zeros((azimut_count, elevation_count))
+            # <0, 180>
+            matrix_full[:meas_azimut_count] = matrix
+            # <180+step, 360-step>
+            matrix_full[meas_azimut_count:] = np.flipud(matrix[1:-1])
+        elif is_fourth_symetry:
+            matrix_full = np.zeros((azimut_count, elevation_count))
+            # count = 36, meas_count = 10, azimuts = (0, 10, 20 ... 350)
+            # <0, 90> 
+            matrix_full[:meas_azimut_count] = matrix
+            # (90, 180>
+            matrix_full[meas_azimut_count:2*meas_azimut_count-1] = np.flipud(matrix[1:])
+            # a = matrix_full[2*meas_azimut_count-1:]
+            # b = np.flipud(matrix_full[1:2*meas_azimut_count-2])
+            matrix_full[2*meas_azimut_count-1:] = np.flipud(matrix_full[1:2*meas_azimut_count-2])
         else:
-            # určení typu symetrie
-            is_half_symetry = (meas_azimut_count - 1) * 2 == azimut_count
-            if is_half_symetry:
-                matrix_full = np.zeros((azimut_count, elevation_count))
-                # <0, 180>
-                matrix_full[:meas_azimut_count] = matrix
-                # <180+step, 360-step>
-                matrix_full[meas_azimut_count:] = np.flipud(matrix[1:-1])
-            else:
-                raise Exception("Unknown data symetry")
+            raise Exception("Unknown data symetry")
 
         self.azimuts = azimuts
         self.elevations = elevations
