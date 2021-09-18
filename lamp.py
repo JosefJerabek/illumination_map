@@ -36,14 +36,12 @@ class Lamp:
         y_diff = y - self._position.y 
         azimut = Lamp._compute_azimut(x_diff, y_diff) - self._azimut
         distance = Lamp._compute_distance(x_diff, y_diff, self._position.z)
-        elevation = Lamp._compute_elevation(distance, self._position.z) - self._elevation
-        if elevation < 0.0:
-            elevation = -elevation
-            azimut = (azimut + 180) % 360
+        elevation = Lamp._compute_elevation(distance, self._position.z)
+        radiation_elevation = elevation - self._elevation
         # luminance intenzity I [cd = lm / sr] 
         # illuminance Ev [lux = lm / m2]
         # Ev = I / r^2
-        intenzity = self._light.intenzity(azimut, elevation)
+        intenzity = self._light.intenzity(azimut, radiation_elevation)
         factor = cos(radians(elevation))
         return factor * intenzity / distance**2
 
@@ -65,5 +63,4 @@ class Lamp:
     @staticmethod
     def _compute_elevation(distance: float, height: float):
         elevation_rad = acos(height / distance) 
-
         return degrees(elevation_rad)
