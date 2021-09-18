@@ -40,7 +40,13 @@ def plot_illuminance(lamp_area: LampPlacement, x_axis: array, y_axis: array, ill
             illuminance = lamp_area.illuminance(x, y)
             illuminancies[x_index, y_index] = illuminance / 2.0 # TODO - why?
 
-    pl.contourf(transpose(x_grid), transpose(y_grid), illuminancies, illumination_axis)
+    pl.contourf(
+        transpose(x_grid), 
+        transpose(y_grid), 
+        illuminancies, 
+        illumination_axis,
+        cmap=pl.cm.get_cmap("jet")
+    )
 
     def get_param_string(illuminancies: array) -> str:
         min_value = int(min(illuminancies))
