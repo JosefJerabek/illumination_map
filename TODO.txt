@@ -1,0 +1,3 @@
+* TODO - test lamp elevation - azimut se měří od osy Y
+* TODO - light nonlinearity around zero
+* TODO - statistics of illuminance in the playground

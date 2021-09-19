@@ -2,12 +2,12 @@ from numpy import array, linspace, arange, meshgrid, empty, transpose, min, max,
 import matplotlib.pyplot as pl
 import yaml
 import sys
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
 from lamp_area import LampArea, LampPlacement, Point3D
 from dataclasses import dataclass
-from typing import List, Optional
 
+from plot_illuminance_map import plot_illuminance_map
 
 @dataclass
 class CenteredRectangle:
@@ -62,37 +62,13 @@ def initialze_from_yaml(config_path) -> Config:
     )
 
 
-def plot_illuminance(config: Config) -> None:
-    
-    x_grid, y_grid = meshgrid(config.x_axis, config.y_axis) 
-    illuminancies = empty((len(config.x_axis), len(config.y_axis)))
-    
-    lamp_area = LampArea(config.lamp_ldt_path, config.lamp_placements)
-
-    for x_index, x in enumerate(config.x_axis):
-        for y_index, y in enumerate(config.y_axis):
-            illuminance = lamp_area.illuminance(x, y)
-            illuminancies[x_index, y_index] = illuminance / 2.0 # TODO - why?
-
-    pl.contourf(
-        transpose(x_grid), 
-        transpose(y_grid), 
-        illuminancies, 
-        config.illum_axis,
-        cmap=pl.cm.get_cmap("jet")
-    )
-
-    def get_param_string(illuminancies: array) -> str:
-        min_value = int(min(illuminancies))
-        max_value = int(max(illuminancies))
-        mean_value = int(mean(illuminancies))
-        median_value = int(median(illuminancies))
-        return f"min={min_value} max={max_value} mean={mean_value} median={median_value}"
-
-    pl.colorbar()
-    pl.title(f"Illuminance [lux] ({get_param_string(illuminancies)})")
-    pl.xlabel("x [m]")
-    pl.ylabel("y [m]")
+#def get_param_string(illuminancies: array) -> str:
+#    min_value = int(min(illuminancies))
+#    max_value = int(max(illuminancies))
+#    mean_value = int(mean(illuminancies))
+#    median_value = int(median(illuminancies))
+#    return f"min={min_value} max={max_value} mean={mean_value} median={median_value}"
+#    pl.title(f"Illuminance [lux] ({get_param_string(illuminancies)})")
 
 
 def plot_box(box: CenteredRectangle):
@@ -116,7 +92,14 @@ if len(sys.argv) == 0 or len(sys.argv) > 1:
     else:
         config_path = sys.argv[1]  
 
+
 config = initialze_from_yaml(config_path)
-plot_illuminance(config)
+lamp_area = LampArea(config.lamp_ldt_path, config.lamp_placements)
+plot_illuminance_map(
+    lamp_area.illuminance,
+    config.x_axis,
+    config.y_axis,
+    config.illum_axis
+)
 plot_box(config.box)
 pl.show()
