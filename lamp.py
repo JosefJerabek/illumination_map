@@ -2,7 +2,7 @@
 Lamp is light placed in defined hight above ground giving 
 illumination to ground points
 """ 
-from math import sqrt, cos, acos, atan2, degrees, radians
+from math import sqrt, cos, acos, atan2, degrees, radians, pi
 
 from light import Light
 from point import Point3D
@@ -49,11 +49,9 @@ class Lamp:
     def _compute_azimut(x_diff: float, y_diff: float):
         """ tg(azimut) = x / y
         :return azimut: [deg]
+        Note: angle is from axis Y (not x as ordinary)
         """
-        azimut_rad = 0.0
-        if x_diff != 0.0:
-            azimut_rad = atan2(x_diff, y_diff)
-        
+        azimut_rad = atan2(y_diff, x_diff) - pi/2
         return degrees(azimut_rad)
     
     @staticmethod
