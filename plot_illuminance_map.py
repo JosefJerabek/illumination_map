@@ -8,6 +8,7 @@ def plot_illuminance_map(
     x_distances: array, 
     y_distances: array,
     color_levels: Optional[array] = None,
+    title: str = "Illuminance [lux]",
     show: bool = False,
     ):
     """ Plots illuminance map in X, Y plane
@@ -19,6 +20,7 @@ def plot_illuminance_map(
         for x_index, x_distance in enumerate(x_distances):
             illuminance = illum_function(x_distance, y_distance)
             illuminancies[x_index, y_index] = illuminance
+    # print(illuminancies)
     if color_levels is not None:
         pl.contourf(
             grid_x_distances, 
@@ -37,7 +39,7 @@ def plot_illuminance_map(
     pl.colorbar()
     pl.xlabel("x [m]")
     pl.ylabel("y [m]")
-    pl.title("Illuminance [lux]")
+    pl.title(title)
 
     if show:
         pl.show()

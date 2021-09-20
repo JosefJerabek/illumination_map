@@ -9,7 +9,8 @@ import numpy as np
 import unittest
 from ldt_reader import LdtReader
 
-LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+#LDT_PATH = './ldt/el-lumen/NITYA XL T5A 47k6 840.LDT'
+LDT_PATH = './ldt/cz-modus/CZ-LDT_RX120C90W.ldt'
 
 
 class TestLdtReader(unittest.TestCase):
