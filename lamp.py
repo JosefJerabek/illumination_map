@@ -34,10 +34,11 @@ class Lamp:
         """
         x_diff = x - self._position.x 
         y_diff = y - self._position.y 
-        azimut = Lamp._compute_azimut(x_diff, y_diff) - self._azimut
+        azimut = Lamp._compute_azimut(x_diff, y_diff) + self._azimut
         distance = Lamp._compute_distance(x_diff, y_diff, self._position.z)
         elevation = Lamp._compute_elevation(distance, self._position.z)
-        radiation_elevation = elevation - self._elevation
+        # just guessing
+        radiation_elevation = elevation - cos(radians(azimut - self._azimut)) * self._elevation
         # luminance intenzity I [cd = lm / sr] 
         # illuminance Ev [lux = lm / m2]
         # Ev = I / r^2
