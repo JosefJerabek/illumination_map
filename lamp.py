@@ -72,30 +72,20 @@ class Lamp:
             point_rot = matmul(T, transpose(point_ext))
             return point_rot[0:3]
 
-        # 1 - souřadnice vůči systému se středem v lampě (x_diff, y_diff, -height)
-        coord_lamp = array([x - self._position.x, y - self._position.y, -self._position.z])
-        coord_zrot = rotate_z(coord_lamp, self._azimut - degrees(pi/2))
-        coord_rot = rotate_x(coord_zrot, self._elevation)
-
-        # 2 - transformace souřadnice do nového XYZ systému
-        #   https://syzpc.ru/cs/electrical-equipment-and-electricity/matrica-povorota-sistemy-koordinat-matrica-povorota-v-dvumernom/
         #   see https://saint-paul.fjfi.cvut.cz/base/sites/default/files/POGR/POGR2/07.maticove_transformace.pdf
-        #   * azimut - rotace kolem osy Z - určení souřadnice v souřadnicovém systému pootočeném kolem osy Z
-        #   * elevace - rotace kolem osy X
-        # 3 - z nových souřadnic (x, y, z) určit azimut a elevaci
-        # 4 - dopočítat osvětlení
+        coord_lamp = array([x - self._position.x, y - self._position.y, -self._position.z])
+        coord_zrot = rotate_z(coord_lamp, self._azimut)
+        coord_rot = rotate_x(coord_zrot, -self._elevation)
+
         dx, dy, dz = coord_rot[0], coord_rot[1], coord_rot[2]
         azimut_rad = compute_azimut_rad(dx, dy)
         distance = compute_distance(dx, dy, dz)
-        elevation = degrees(compute_elevation_rad(distance, self._position.z))
-        radiation_elevation = degrees(compute_elevation_rad(distance, dz))
-        # just guessing
-        radiation_elevation = elevation - cos(radians(azimut_rad - self._azimut)) * self._elevation
-        # TODO - azimut is also changing
+        elevation_rad = compute_elevation_rad(distance, self._position.z)
+        radiation_elevation = degrees(compute_elevation_rad(distance, -dz))
+
         # luminance intenzity I [cd = lm / sr]
         # illuminance Ev [lux = lm / m2]
         # Ev = I / r^2
         intenzity = self._light.intenzity(degrees(azimut_rad), radiation_elevation)
-        factor = cos(radians(elevation))
+        factor = cos(elevation_rad)
         return factor * intenzity / distance**2
-
