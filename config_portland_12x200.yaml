@@ -1,9 +1,30 @@
 ldt_path: './ldt/portland/FLD153-D1.ldt'
 lamp_placements: 
   ### Skřížená varianta ###
-  # x[m],   y[m],  z[m], azimut[deg], elevation[deg]
-  # azimut [deg] - angle around Z axis, zero is Y axis direction
-  # elevation [deg] - angle around X axis 
+  #
+  # items: x[m], y[m], z[m], azimut[deg], elevation[deg]
+  #
+  #   Na aximut a elevaci je vhodné pohlížet jako dva nezávislé parametry.
+  #
+  #   azimut [deg] - light front azimut
+  #                  angle around Z axis counterclockwise measured from X
+  #                  zero means positive X direction
+  #                  pravidlo pravé ruky - palec ve směru osy Z, prsty ukazují směr
+  #                  úhel v rovině XY, měřený od X směrem k Y
+  #   elevation [deg] - light front elevation
+  #                     angle around X axis counterclockwise measured from Z
+  #                     zero means negative Z direction (down)
+  #                     pravidlo pravé ruky - palec ve směru osy X, prsty ukazují směr
+  #                     úhel v rovině ZY, měřený od Z směrem k Y
+  #
+  #   ^
+  #   |      /
+  #   |     /                                                       
+  #   |    y                                                        
+  #   z   /                                                         
+  #   |  /                                                          
+  #   | /                                                           
+  #   |--------------- x ---->                                                              
   # původní X souřadnice: [3.61, 7.22, 10.83, 21.67, 25.28, 28,89]    
   ### nejvnějšejší
   - {x: -12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
