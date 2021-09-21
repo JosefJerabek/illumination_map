@@ -10,10 +10,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            //"args": ["config_modus_8x108.yaml"]
-            //"args": ["config_portland_12x200.yaml"]
+            //"args": ["config_portland_12x200_7m.yaml"],
             "args": ["config_portland_12x200.yaml"]
-
         }
     ]
 }

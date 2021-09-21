@@ -39,4 +39,8 @@ Ev = P / S
 
 Ev = I * O / S
 
-Ev = I / r^2
+Ev = I * cos(b) / r^2
+
+b - angle to surface normal vector
+
+http://www.lustry-svitidla.cz/vypocet-osvetleni

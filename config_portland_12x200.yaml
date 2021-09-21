@@ -6,15 +6,15 @@ lamp_placements:
   # elevation [deg] - angle around X axis 
   # původní X souřadnice: [3.61, 7.22, 10.83, 21.67, 25.28, 28,89]    
   ### nejvnějšejší
-  - {x: -12.64, y: -9.000, z: 5.000, elevation: 20.0, azimut:  -15.0}
-  - {x:  12.64, y: -9.000, z: 5.000, elevation: 20.0, azimut:  15.0}
-  - {x: -12.64, y:  9.000, z: 5.000, elevation: 20.0, azimut:  -165.0}
-  - {x:  12.64, y:  9.000, z: 5.000, elevation: 20.0, azimut: 165.0}
+  - {x: -12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
+  - {x:  12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  15.0}
+  - {x: -12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut:  -165.0}
+  - {x:  12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut: 165.0}
   ### prostřední20
-  - {x:  -9.03, y: -9.000, z: 5.000, elevation: 20.0, azimut:    0.0}
-  - {x:   9.03, y: -9.000, z: 5.000, elevation: 20.0, azimut:    0.0}
-  - {x:  -9.03, y:  9.000, z: 5.000, elevation: 20.0, azimut:  180.0}
-  - {x:   9.03, y:  9.000, z: 5.000, elevation: 20.0, azimut:  180.0}
+  - {x:  -9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
+  - {x:   9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
+  - {x:  -9.03, y:  9.000, z: 5.000, elevation: 17.0, azimut:  180.0}
+  - {x:   9.03, y:  9.000, z: 5.000, elevation: 17.0, azimut:  180.0}
   ### nejvnitřenější
   - {x:  -5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:   45.0}
   - {x:   5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:  -45.0}
@@ -26,4 +26,4 @@ y_axis: {start: -15.0, stop: 15.0, count: 50}
 # playground dimensions
 box_x_radius: 16.25
 box_y_radius: 9
-illumination_axis: {start: 0.0, stop: 400.0, count: 33}  # [lux] ... count = (max-min) / step + 1
+illumination_axis: {start: 0.0, stop: 800.0, count: 33}  # [lux] ... count = (max-min) / step + 1

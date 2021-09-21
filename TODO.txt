@@ -1,3 +1,10 @@
 * TODO - test lamp elevation - azimut se měří od osy Y
 * TODO - light nonlinearity around zero
 * TODO - statistics of illuminance in the playground
+* TODO - zajímá mě osvětlení plochy? to je jako bych četl, nemělo by to spíše být že mě je jedno ze které strany to svítí (bez korekčního faktoru)?
+
+TODO - test_lamp ukázal chybu pro elevaci 0 chybu pro záporné vzdálenosti (dává více)
+
+* předělat tak, aby se azimut standardně měřil od osy X
+
+* pootočením světla kolem osy a natočěním se změní elevace v závislosti na úhlu!!
