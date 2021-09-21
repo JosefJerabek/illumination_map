@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-@dataclass 
+@dataclass
 class Point3D:
     """ Point in 3D space """
     x: float
