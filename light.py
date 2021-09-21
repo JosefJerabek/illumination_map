@@ -1,11 +1,11 @@
 import numpy as np
-from typing import List, Tuple
+from typing import Tuple
 
 from point import Point2D
 
 
 class Light:
-    """ 
+    """
     From sampled intenzity characteristics
     interpolate whole characteristics in whole space
 
@@ -15,8 +15,8 @@ class Light:
     """
 
     def __init__(self, azimuts: np.array, elevations: np.array, intenzities: np.array):
-        """ 
-        :param azimuts: [deg] - measured from front axis, range covers full circle 
+        """
+        :param azimuts: [deg] - measured from front axis, range covers full circle
         :param elevations: [deg] - angle from down direction
         :param intenzities: [cd] - matrix [azimut, elevation]
         """
@@ -29,15 +29,15 @@ class Light:
         self._intenzities = intenzities
 
     def intenzity(self, azimut, elevation):
-        """ 
-        Returns light intenzity for input azimut and elevation. Azimut is not 
+        """
+        Returns light intenzity for input azimut and elevation. Azimut is not
         limited. Elevation use bound value if lowest or highes value exceeded.
         :param azimut: [deg] accepts all azimuts (not limited)
         :param elevation: [deg] accepts <-180, 180>
         :returns [cd]
         """
 
-        # range for elevation 
+        # range for elevation
         assert (-180 <= elevation <= 180)
         # azimut not limited, just convert into basic interval <0, 360)
         if elevation < 0:
@@ -65,7 +65,7 @@ class Light:
             else:
                 return (min_index, cindex(min_index + 1))
 
-        def get_elevation_index_pair(elevation_axis: np.array, elevation) -> Tuple[float, float]:
+        def get_elevation_index_pair(elevation_axis: np.array, elevation) -> Tuple[int, int]:
             """
             """
             penalty_axis = np.abs(elevation_axis - elevation)
