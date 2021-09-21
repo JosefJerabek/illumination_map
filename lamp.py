@@ -20,10 +20,12 @@ class Lamp:
                  ):
         """
         :param position: [m]
-        :param azimut: light mounting angle measured from Y axis [deg]
-                "natočení doleva (0 - doprava, 90 - před sebe, 180 - doleva)"
-        :param elevation: light mounting angle around X axis [deg]
-                "náklon dopředu aby svítílo dál (0 - přímo pod sebe)"
+        :param azimut [deg] - light azimut counterclockwise from light front direction
+                       (-90 .. right, 0 .. front, 90 .. left)"
+  
+        :param elevation [deg] - light elevation
+                          (0 - standard mounting, positive - lighten longer distance, negative - shorter)
+
         """
         self._light = light
         self._position = position

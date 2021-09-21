@@ -6,18 +6,11 @@ lamp_placements:
   #
   #   Na aximut a elevaci je vhodné pohlížet jako dva nezávislé parametry.
   #
-  #   azimut [deg] - "natočení doleva (0 - doprava, 90 - před sebe, 180 - doleva)"
-  #                  light front azimut
-  #                  angle around Z axis counterclockwise measured from X
-  #                  zero means positive X direction
-  #                  pravidlo pravé ruky - palec ve směru osy Z, prsty ukazují směr
-  #                  úhel v rovině XY, měřený od X směrem k Y
-  #   elevation [deg] - "náklon dopředu aby svítílo dál (0 - přímo pod sebe)"
-  #                     light front elevation
-  #                     angle around X axis counterclockwise measured from Z
-  #                     zero means negative Z direction (down)
-  #                     pravidlo pravé ruky - palec ve směru osy X, prsty ukazují směr
-  #                     úhel v rovině ZY, měřený od Z směrem k Y
+  #   azimut [deg] - light azimut counterclockwise from light front direction
+  #                  (-90 .. right, 0 .. front, 90 .. left)"
+  #
+  #   elevation [deg] - light elevation
+  #                     (0 - standard mounting, positive - lighten longer distance, negative - shorter)
   #
   #   ^
   #   |      /
@@ -33,7 +26,7 @@ lamp_placements:
   - {x:  12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
   - {x: -12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut:  165.0}
   - {x:  12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut: -165.0}
-  ### prostřední20
+  ### prostřední
   - {x:  -9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
   - {x:   9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
   - {x:  -9.03, y:  9.000, z: 5.000, elevation: 17.0, azimut:  180.0}

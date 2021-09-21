@@ -1,10 +1,2 @@
-* TODO - test lamp elevation - azimut se měří od osy Y
 * TODO - light nonlinearity around zero
 * TODO - statistics of illuminance in the playground
-
-* předělat tak, aby se azimut standardně měřil od osy X
-
-* pootočením světla kolem osy a natočěním se změní elevace v závislosti na úhlu!!
-
-* TODO - v nabídce je pootočení kolem X, Z
-je to stejné jako azimut a elevace??
