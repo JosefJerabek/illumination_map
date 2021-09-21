@@ -6,12 +6,14 @@ lamp_placements:
   #
   #   Na aximut a elevaci je vhodné pohlížet jako dva nezávislé parametry.
   #
-  #   azimut [deg] - light front azimut
+  #   azimut [deg] - "natočení doleva (0 - doprava, 90 - před sebe, 180 - doleva)"
+  #                  light front azimut
   #                  angle around Z axis counterclockwise measured from X
   #                  zero means positive X direction
   #                  pravidlo pravé ruky - palec ve směru osy Z, prsty ukazují směr
   #                  úhel v rovině XY, měřený od X směrem k Y
-  #   elevation [deg] - light front elevation
+  #   elevation [deg] - "náklon dopředu aby svítílo dál (0 - přímo pod sebe)"
+  #                     light front elevation
   #                     angle around X axis counterclockwise measured from Z
   #                     zero means negative Z direction (down)
   #                     pravidlo pravé ruky - palec ve směru osy X, prsty ukazují směr
@@ -27,24 +29,24 @@ lamp_placements:
   #   |--------------- x ---->                                                              
   # původní X souřadnice: [3.61, 7.22, 10.83, 21.67, 25.28, 28,89]    
   ### nejvnějšejší
-  - {x: -12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
-  - {x:  12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  15.0}
-  - {x: -12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut:  -165.0}
-  - {x:  12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut: 165.0}
+  - {x: -12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:   15.0}
+  - {x:  12.64, y: -9.000, z: 5.000, elevation: 15.0, azimut:  -15.0}
+  - {x: -12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut:  165.0}
+  - {x:  12.64, y:  9.000, z: 5.000, elevation: 15.0, azimut: -165.0}
   ### prostřední20
   - {x:  -9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
   - {x:   9.03, y: -9.000, z: 5.000, elevation: 17.0, azimut:    0.0}
   - {x:  -9.03, y:  9.000, z: 5.000, elevation: 17.0, azimut:  180.0}
   - {x:   9.03, y:  9.000, z: 5.000, elevation: 17.0, azimut:  180.0}
   ### nejvnitřenější
-  - {x:  -5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:   45.0}
-  - {x:   5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:  -45.0}
-  - {x:  -5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut:  135.0}
-  - {x:   5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut: -135.0}
+  - {x:  -5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:  -45.0}
+  - {x:   5.42, y: -9.000, z: 5.000, elevation: 20.0, azimut:   45.0}
+  - {x:  -5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut: -135.0}
+  - {x:   5.42, y:  9.000, z: 5.000, elevation: 20.0, azimut:  135.0}
 # grid for illumination computation
 x_axis: {start: -22, stop: 22, count: 50}  # [m]
 y_axis: {start: -15.0, stop: 15.0, count: 50}
 # playground dimensions
 box_x_radius: 16.25
 box_y_radius: 9
-illumination_axis: {start: 0.0, stop: 800.0, count: 33}  # [lux] ... count = (max-min) / step + 1
+illumination_axis: {start: 0.0, stop: 500.0, count: 11}  # [lux] ... count = (max-min) / step + 1

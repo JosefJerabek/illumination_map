@@ -15,8 +15,8 @@ from plot_illuminance_map import plot_illuminance_map
 
 LDT_PATH = './ldt/portland/FLD153-D1.ldt'
 
-HEIGHT = 5.0  # lamp height
-LIGHT_AZIMUT = -90
+LAMP_HEIGHT = 5.0
+LAMP_AZIMUT_DEG = 0 
 
 x_distances = np.linspace(-5.0, 5.0, 60)  # side
 y_distances = np.linspace(-10.0, 10.0, 50)  # front
@@ -39,7 +39,7 @@ def test_elevation():
 
     def illum_map_elevation(elevation):
         """ Illumination map for specific elevation. """
-        lamp = Lamp(light, Point3D(0.0, 0.0, HEIGHT), LIGHT_AZIMUT, elevation)
+        lamp = Lamp(light, Point3D(0.0, 0.0, LAMP_HEIGHT), LAMP_AZIMUT_DEG, elevation)
 
         plot_illuminance_map(
             lamp.illuminance, 
