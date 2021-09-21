@@ -3,13 +3,19 @@ lamp_placements:
   ### Skřížená varianta ###
   #
   # items: x[m], y[m], z[m], azimut[deg], elevation[deg]
+  #
+  #   Na aximut a elevaci je vhodné pohlížet jako dva nezávislé parametry.
+  #
   #   azimut [deg] - light front azimut
   #                  angle around Z axis counterclockwise measured from X
   #                  zero means positive X direction
-  #                  pravidlo pravé ruky - palec ve směru osy, prsty ukazují směr
+  #                  pravidlo pravé ruky - palec ve směru osy Z, prsty ukazují směr
+  #                  úhel v rovině XY, měřený od X směrem k Y
   #   elevation [deg] - light front elevation
   #                     angle around X axis counterclockwise measured from Z
   #                     zero means negative Z direction (down)
+  #                     pravidlo pravé ruky - palec ve směru osy X, prsty ukazují směr
+  #                     úhel v rovině ZY, měřený od Z směrem k Y
   #
   #   ^
   #   |      /
